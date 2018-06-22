@@ -1,3 +1,17 @@
+console.log('Starting uptime monitor!')
+
+// Use the environment variable or use a given port
+const PORT = process.env.PORT || 8080;
+
+// Create a server, uses `handleRequest` which is function that takes
+// care of providing requested data
+const server = http.createServer(handleRequest);
+
+// Start the server
+server.listen(PORT, () => {
+  console.log('Server listening on: http://localhost:%s', PORT);
+});
+
 // load the variables from the .env file
 require('dotenv').config()
 
@@ -41,7 +55,7 @@ services.forEach( service => {
 
   setInterval( () => {
     pingService(service.url, serviceResponse => {
-      if (serviceResponse === 'OUTAGE' && serviceStatus[service.url].status !== 'OUTAGE') {
+      if (serviceResponse === 'OPERATIONAL' && serviceStatus[service.url].status !== 'OPERATIONAL') {
         // only update and post to Slack on state change
         serviceStatus[service.url].status = 'OUTAGE'
         postToSlack(service.url)
