@@ -1,0 +1,24 @@
+{
+  "name": "node-uptime-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheInvalidNonce/node-uptime-monitor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheInvalidNonce/node-uptime-monitor/issues"
+  },
+  "homepage": "https://github.com/TheInvalidNonce/node-uptime-monitor#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "request": "^2.87.0"
+  }
+}
