@@ -1,17 +1,5 @@
 console.log('Starting uptime monitor!')
 
-// Use the environment variable or use a given port
-const PORT = process.env.PORT || 8080;
-
-// Create a server, uses `handleRequest` which is function that takes
-// care of providing requested data
-const server = http.createServer(handleRequest);
-
-// Start the server
-server.listen(PORT, () => {
-  console.log('Server listening on: http://localhost:%s', PORT);
-});
-
 // load the variables from the .env file
 require('dotenv').config()
 
@@ -19,6 +7,21 @@ const request = require('request')
 
 // list of services to monitor
 const services = require('./services.js') 
+
+// const http = require('http')
+
+// // Use the environment variable or use a given port
+// const PORT = process.env.PORT || 8080;
+
+// // Create a server, uses `handleRequest` which is function that takes
+// // care of providing requested data
+// const server = http.createServer(handleRequest);
+
+// // Start the server
+// server.listen(PORT, () => {
+//   console.log('Server listening on: http://localhost:%s', PORT);
+// });
+
 
 // take a url and cb (callback) as parameters
 // use the request library to make a GET request to the specified url
