@@ -33,7 +33,7 @@ const pingService = (url, callback) => {
     uri: url,
     time: true,
   }, (err, resp, body) => {
-    if (!err && resp.statusCode === 200) {
+    if (!err && resp.statusCode !== 200) {
       // we'll use the time from the point we try to establish a connection with
       // the service until the first byte is received
       callback(resp.timingPhases.firstByte)
@@ -58,9 +58,11 @@ services.forEach( service => {
 
   setInterval( () => {
     pingService(service.url, serviceResponse => {
-      if (serviceResponse === 'OPERATIONAL' && serviceStatus[service.url].status !== 'OPERATIONAL') {
+      if (serviceResponse === 'OUTAGE' && serviceStatus[service.url].status !== 'OUTAGE') {
         // only update and post to Slack on state change
         serviceStatus[service.url].status = 'OUTAGE'
+        console.log(serviceStatus)
+        console.log(serviceResponse)
         postToSlack(service.url)
       }
       else {
