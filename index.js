@@ -76,3 +76,17 @@ services.forEach( service => {
   }, pingInterval)
 })
 
+const postToSlack = (serviceUrl) => {
+  let slackPayload = {
+    text: `*Service ${serviceStatus[serviceUrl].status}*\n${serviceUrl}`
+  }
+
+  request({
+    method: 'POST',
+    uri: process.env.SLACK_WEBHOOK_URL,
+    body: slackPayload,
+    json: true
+  }, (err, res, body) => {
+    if (err) console.log(`Error posting to Slack: ${err}`)
+  })
+}
