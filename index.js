@@ -45,7 +45,7 @@ const pingService = (url, callback) => {
   )
 }
 
-const pingInterval = 5*1000*60 // 5 minute interval
+const pingInterval = 1*1000*60 // 5 minute interval
 let serviceStatus = {}
 
 services.forEach( service => {
